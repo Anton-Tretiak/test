@@ -12,9 +12,11 @@ const calculateOrderTotal = (items) => {
 };
 
 app.post('/pronature', (req, res) => {
-  console.log('Request Body:', req.body);
-
+  console.log('Items: ', req.body.rate.items);
+  console.log('Request Body:', req.body.rate.items);
+  
   const items = req.body.rate.items;
+
   const totalCost = calculateOrderTotal(items);
 
   res.status(200).json({
