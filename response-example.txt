@@ -1,0 +1,41 @@
+Request Body: {
+  rate: {
+    origin: {
+      country: 'CA',
+      postal_code: null,
+      province: null,
+      city: null,
+      name: null,
+      address1: null,
+      address2: null,
+      address3: null,
+      latitude: null,
+      longitude: null,
+      phone: null,
+      fax: null,
+      email: null,
+      address_type: null,
+      company_name: 'Dev Store Extensions'
+    },
+    destination: {
+      country: 'CA',
+      postal_code: 'H4Y 1H1',
+      province: 'QC',
+      city: 'Dorval',
+      name: '1 1',
+      address1: 'Boulevard Roméo Vachon Nord (Arrivées)',
+      address2: null,
+      address3: null,
+      latitude: 45.4577657,
+      longitude: -73.75016459999999,
+      phone: null,
+      fax: null,
+      email: null,
+      address_type: null,
+      company_name: null
+    },
+    items: [ [Object], [Object] ],
+    currency: 'CAD',
+    locale: 'en-CA'
+  }
+}
