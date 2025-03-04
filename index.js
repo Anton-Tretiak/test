@@ -18,18 +18,24 @@ app.post('/pronature', (req, res) => {
 
   const currencyCode = req.body.rate.currency;
   const orderTotal = calculateOrderTotal(req.body.rate.items);
+  
+  if (orderTotal <= 300000) {
+    const customShipping = orderTotal * 0.1;
 
-  res.status(200).json({
-    "rates": [
-      {
-        "service_name": "Custom Shipping",
-        "service_code": "custom-shipping",
-        "total_price": `${orderTotal}`,
-        "description": "This is the fastest option by far",
-        "currency": `${currencyCode}`,
-      }
-    ]
- });
+    res.status(200).json({
+      "rates": [
+        {
+          "service_name": "Custom Shipping",
+          "service_code": "custom-shipping",
+          "total_price": `${customShipping}`,
+          "description": "This is the fastest option by far",
+          "currency": `${currencyCode}`,
+        }
+      ]
+    });
+  } else {
+    return;
+  }
 });
 
 app.listen(port, () => {
