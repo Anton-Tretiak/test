@@ -34,7 +34,7 @@ app.post('/pronature', (req, res) => {
       ]
     });
   } else {
-    return;
+    res.status(200).json({});
   }
 });
 
