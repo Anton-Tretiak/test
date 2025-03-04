@@ -4,27 +4,32 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// const calculateOrderTotal = (items) => {
-//   return items.reduce((total, item) => {
-//     const itemTotal = (item.price * item.quantity) / 100;
-//     return total + itemTotal;
-//   }, 0);
-// };
+const calculateOrderTotal = (items) => {
+  return items.reduce((total, item) => {
+    const itemTotal = item.price * item.quantity;
+
+    return total + itemTotal;
+  }, 0);
+};
 
 app.post('/pronature', (req, res) => {
-  console.log('----code start----');
-
-
-  console.log('Request Body:', req.body);
+  console.log('Request Body:', req.body.rate.items);
   console.log('Items: ', req.body.rate.items);
 
-  const linePrice = req.body.rate.items[0].price;
-  const lineQuantity = req.body.rate.items[0].quantity;
+  const currencyCode = req.body.rate.currency;
+  const orderTotal = calculateOrderTotal(req.body.rate.items);
 
-  console.log('Total Line Price: ', linePrice * lineQuantity);
-
-
-  console.log('----code end----');
+  res.status(200).json({
+    "rates": [
+      {
+        "service_name": "Custom Shipping",
+        "service_code": "custom-shipping",
+        "total_price": `${orderTotal}`,
+        "description": "This is the fastest option by far",
+        "currency": `${currencyCode}`,
+      }
+    ]
+ });
 });
 
 app.listen(port, () => {
